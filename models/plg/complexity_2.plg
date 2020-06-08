@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 
+
+WARNING: Do not manually edit this file, unless you know what you are doing!
+
+This file has been generated with libPlg v.2.0.6.
+Check https://github.com/delas/plg for sources and other stuff.
+
+ -->
+<process>
+	<!-- This is the list of all meta-attributes of the process -->
+	<meta>
+		<LibPLG_NAME>libPlg</LibPLG_NAME>
+		<libPLG_VERSION>2.0.6</libPLG_VERSION>
+		<name>Complexity 2</name>
+		<id>jh87tq041lq6bt15dcdkc0g9d4</id>
+	</meta>
+	<!-- This is the list of all actual process elements -->
+	<elements>
+		<startEvent id="12565"/>
+		<task id="12610" name="Activity P">
+			<script/>
+		</task>
+		<task id="12674" name="Activity AK">
+			<script/>
+		</task>
+		<task id="12611" name="Activity Q">
+			<script/>
+		</task>
+		<task id="12675" name="Activity AL">
+			<script/>
+		</task>
+		<task id="12677" name="Activity AM">
+			<script/>
+		</task>
+		<task id="12614" name="Activity R">
+			<script/>
+		</task>
+		<task id="12678" name="Activity AN">
+			<script/>
+		</task>
+		<task id="12615" name="Activity S">
+			<script/>
+		</task>
+		<task id="12618" name="Activity T">
+			<script/>
+		</task>
+		<task id="12683" name="Activity AO">
+			<script/>
+		</task>
+		<task id="12621" name="Activity U">
+			<script/>
+		</task>
+		<task id="12624" name="Activity V">
+			<script/>
+		</task>
+		<task id="12627" name="Activity W">
+			<script/>
+		</task>
+		<task id="12567" name="Activity A">
+			<script/>
+		</task>
+		<task id="12632" name="Activity X">
+			<script/>
+		</task>
+		<task id="12570" name="Activity B">
+			<script/>
+		</task>
+		<task id="12571" name="Activity C">
+			<script/>
+		</task>
+		<task id="12635" name="Activity Y">
+			<script/>
+		</task>
+		<task id="12636" name="Activity Z">
+			<script/>
+		</task>
+		<task id="12574" name="Activity D">
+			<script/>
+		</task>
+		<task id="12575" name="Activity E">
+			<script/>
+		</task>
+		<task id="12639" name="Activity AA">
+			<script/>
+		</task>
+		<task id="12642" name="Activity AB">
+			<script/>
+		</task>
+		<task id="12581" name="Activity F">
+			<script/>
+		</task>
+		<task id="12645" name="Activity AC">
+			<script/>
+		</task>
+		<task id="12584" name="Activity G">
+			<script/>
+		</task>
+		<task id="12585" name="Activity H">
+			<script/>
+		</task>
+		<task id="12588" name="Activity I">
+			<script/>
+		</task>
+		<task id="12653" name="Activity AD">
+			<script/>
+		</task>
+		<task id="12654" name="Activity AE">
+			<script/>
+		</task>
+		<task id="12591" name="Activity J">
+			<script/>
+		</task>
+		<task id="12656" name="Activity AF">
+			<script/>
+		</task>
+		<task id="12594" name="Activity K">
+			<script/>
+		</task>
+		<task id="12659" name="Activity AG">
+			<script/>
+		</task>
+		<task id="12660" name="Activity AH">
+			<script/>
+		</task>
+		<task id="12597" name="Activity L">
+			<script/>
+		</task>
+		<task id="12663" name="Activity AI">
+			<script/>
+		</task>
+		<task id="12602" name="Activity M">
+			<script/>
+		</task>
+		<task id="12666" name="Activity AJ">
+			<script/>
+		</task>
+		<task id="12603" name="Activity N">
+			<script/>
+		</task>
+		<task id="12607" name="Activity O">
+			<script/>
+		</task>
+		<gateway id="12608" type="ParallelGateway"/>
+		<gateway id="12609" type="ParallelGateway"/>
+		<gateway id="12657" type="ExclusiveGateway"/>
+		<gateway id="12658" type="ExclusiveGateway"/>
+		<gateway id="12612" type="ExclusiveGateway"/>
+		<gateway id="12613" type="ExclusiveGateway"/>
+		<gateway id="12582" type="ExclusiveGateway"/>
+		<gateway id="12583" type="ExclusiveGateway"/>
+		<gateway id="12568" type="ExclusiveGateway"/>
+		<gateway id="12569" type="ExclusiveGateway"/>
+		<gateway id="12633" type="ExclusiveGateway"/>
+		<gateway id="12634" type="ExclusiveGateway"/>
+		<endEvent id="12566"/>
+		<sequenceFlow id="12672" sourceRef="12608" targetRef="12653"/>
+		<sequenceFlow id="12673" sourceRef="12659" targetRef="12609"/>
+		<sequenceFlow id="12676" sourceRef="12674" targetRef="12675"/>
+		<sequenceFlow id="12679" sourceRef="12677" targetRef="12678"/>
+		<sequenceFlow id="12680" sourceRef="12675" targetRef="12677"/>
+		<sequenceFlow id="12681" sourceRef="12608" targetRef="12674"/>
+		<sequenceFlow id="12682" sourceRef="12678" targetRef="12609"/>
+		<sequenceFlow id="12684" sourceRef="12608" targetRef="12683"/>
+		<sequenceFlow id="12685" sourceRef="12683" targetRef="12609"/>
+		<sequenceFlow id="12686" sourceRef="12607" targetRef="12608"/>
+		<sequenceFlow id="12687" sourceRef="12609" targetRef="12610"/>
+		<sequenceFlow id="12688" sourceRef="12603" targetRef="12607"/>
+		<sequenceFlow id="12689" sourceRef="12565" targetRef="12567"/>
+		<sequenceFlow id="12690" sourceRef="12610" targetRef="12566"/>
+		<sequenceFlow id="12572" sourceRef="12568" targetRef="12571"/>
+		<sequenceFlow id="12573" sourceRef="12571" targetRef="12569"/>
+		<sequenceFlow id="12576" sourceRef="12574" targetRef="12575"/>
+		<sequenceFlow id="12577" sourceRef="12568" targetRef="12574"/>
+		<sequenceFlow id="12578" sourceRef="12575" targetRef="12569"/>
+		<sequenceFlow id="12579" sourceRef="12567" targetRef="12568"/>
+		<sequenceFlow id="12580" sourceRef="12569" targetRef="12570"/>
+		<sequenceFlow id="12586" sourceRef="12582" targetRef="12585"/>
+		<sequenceFlow id="12587" sourceRef="12585" targetRef="12583"/>
+		<sequenceFlow id="12589" sourceRef="12582" targetRef="12588"/>
+		<sequenceFlow id="12590" sourceRef="12588" targetRef="12583"/>
+		<sequenceFlow id="12592" sourceRef="12582" targetRef="12591"/>
+		<sequenceFlow id="12593" sourceRef="12591" targetRef="12583"/>
+		<sequenceFlow id="12595" sourceRef="12582" targetRef="12594"/>
+		<sequenceFlow id="12596" sourceRef="12594" targetRef="12583"/>
+		<sequenceFlow id="12598" sourceRef="12582" targetRef="12597"/>
+		<sequenceFlow id="12599" sourceRef="12597" targetRef="12583"/>
+		<sequenceFlow id="12600" sourceRef="12581" targetRef="12582"/>
+		<sequenceFlow id="12601" sourceRef="12583" targetRef="12584"/>
+		<sequenceFlow id="12604" sourceRef="12602" targetRef="12603"/>
+		<sequenceFlow id="12605" sourceRef="12584" targetRef="12602"/>
+		<sequenceFlow id="12606" sourceRef="12570" targetRef="12581"/>
+		<sequenceFlow id="12616" sourceRef="12612" targetRef="12615"/>
+		<sequenceFlow id="12617" sourceRef="12615" targetRef="12613"/>
+		<sequenceFlow id="12619" sourceRef="12612" targetRef="12618"/>
+		<sequenceFlow id="12620" sourceRef="12618" targetRef="12613"/>
+		<sequenceFlow id="12622" sourceRef="12612" targetRef="12621"/>
+		<sequenceFlow id="12623" sourceRef="12621" targetRef="12613"/>
+		<sequenceFlow id="12625" sourceRef="12612" targetRef="12624"/>
+		<sequenceFlow id="12626" sourceRef="12624" targetRef="12613"/>
+		<sequenceFlow id="12628" sourceRef="12612" targetRef="12627"/>
+		<sequenceFlow id="12629" sourceRef="12627" targetRef="12613"/>
+		<sequenceFlow id="12630" sourceRef="12611" targetRef="12612"/>
+		<sequenceFlow id="12631" sourceRef="12613" targetRef="12614"/>
+		<sequenceFlow id="12637" sourceRef="12633" targetRef="12636"/>
+		<sequenceFlow id="12638" sourceRef="12636" targetRef="12634"/>
+		<sequenceFlow id="12640" sourceRef="12633" targetRef="12639"/>
+		<sequenceFlow id="12641" sourceRef="12639" targetRef="12634"/>
+		<sequenceFlow id="12643" sourceRef="12633" targetRef="12642"/>
+		<sequenceFlow id="12644" sourceRef="12642" targetRef="12634"/>
+		<sequenceFlow id="12646" sourceRef="12633" targetRef="12645"/>
+		<sequenceFlow id="12647" sourceRef="12645" targetRef="12634"/>
+		<sequenceFlow id="12648" sourceRef="12632" targetRef="12633"/>
+		<sequenceFlow id="12649" sourceRef="12634" targetRef="12635"/>
+		<sequenceFlow id="12650" sourceRef="12614" targetRef="12632"/>
+		<sequenceFlow id="12651" sourceRef="12608" targetRef="12611"/>
+		<sequenceFlow id="12652" sourceRef="12635" targetRef="12609"/>
+		<sequenceFlow id="12655" sourceRef="12653" targetRef="12654"/>
+		<sequenceFlow id="12661" sourceRef="12657" targetRef="12660"/>
+		<sequenceFlow id="12662" sourceRef="12660" targetRef="12658"/>
+		<sequenceFlow id="12664" sourceRef="12657" targetRef="12663"/>
+		<sequenceFlow id="12665" sourceRef="12663" targetRef="12658"/>
+		<sequenceFlow id="12667" sourceRef="12657" targetRef="12666"/>
+		<sequenceFlow id="12668" sourceRef="12666" targetRef="12658"/>
+		<sequenceFlow id="12669" sourceRef="12656" targetRef="12657"/>
+		<sequenceFlow id="12670" sourceRef="12658" targetRef="12659"/>
+		<sequenceFlow id="12671" sourceRef="12654" targetRef="12656"/>
+	</elements>
+</process>
