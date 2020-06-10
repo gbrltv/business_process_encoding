@@ -12,7 +12,7 @@ Check https://github.com/delas/plg for sources and other stuff.
 	<meta>
 		<LibPLG_NAME>libPlg</LibPLG_NAME>
 		<libPLG_VERSION>2.0.6</libPLG_VERSION>
-		<name>Complexity 5</name>
+		<name>Scenario 5</name>
 		<id>5vbb2t5tfkkis4lgi6mbicobgr</id>
 	</meta>
 	<!-- This is the list of all actual process elements -->
