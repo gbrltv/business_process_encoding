@@ -2,7 +2,7 @@
 <pnml>
 	<net id="net1" type="http://www.pnml.org/version-2009/grammar/pnmlcoremodel">
 		<name>
-			<text>Complexity 2</text>
+			<text>Scenario2</text>
 		</name>
 		<page id="n0">
 			<name>
