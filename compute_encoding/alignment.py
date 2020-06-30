@@ -21,6 +21,7 @@ def compute_alignments(alignments):
 
     return [cost, visited_states, queued_states, traversed_arcs, fitness]
 
+
 path = './event_logs'
 save_path = './encoding_results/alignment'
 os.makedirs(save_path, exist_ok=True)
