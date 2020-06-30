@@ -7,6 +7,7 @@ from .inject_anomalies import rework_anomaly
 from .inject_anomalies import attribute_anomaly
 from .inject_anomalies import format_normal_case
 
+
 __all__ = [
     "sort_alphanumeric",
     "early_anomaly",

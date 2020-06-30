@@ -18,7 +18,7 @@ names = ['Adam', 'Adele', 'Amanda', 'Amy', 'Anna', 'Arthur', 'Ashton', 'Barney',
         'Wayne', 'Will', 'Willow', 'Zach', 'Zayn', 'Zoe']
 
 
-def early_anomaly(pd.DataFrame: case) -> pd.DataFrame:
+def early_anomaly(case: pd.DataFrame) -> pd.DataFrame:
     """
     A sequence of 2 or fewer events executed too early, which is then skipped later in the case
 
@@ -61,7 +61,7 @@ def early_anomaly(pd.DataFrame: case) -> pd.DataFrame:
     return case
 
 
-def late_anomaly(pd.DataFrame: case) -> pd.DataFrame:
+def late_anomaly(case: pd.DataFrame) -> pd.DataFrame:
     """
     A sequence of 2 or fewer events executed too late, which is then skipped later in the case
 
@@ -109,7 +109,7 @@ def late_anomaly(pd.DataFrame: case) -> pd.DataFrame:
     return case
 
 
-def insert_anomaly(pd.DataFrame: case, int: random_count):
+def insert_anomaly(case: pd.DataFrame, random_count: int):
     """
     3 or less random activities inserted in the case
 
@@ -150,7 +150,7 @@ def insert_anomaly(pd.DataFrame: case, int: random_count):
     return case, random_count
 
 
-def skip_anomaly(pd.DataFrame: case) -> pd.DataFrame:
+def skip_anomaly(case: pd.DataFrame) -> pd.DataFrame:
     """
     A sequence of 3 or less necessary events is skipped
 
@@ -182,7 +182,7 @@ def skip_anomaly(pd.DataFrame: case) -> pd.DataFrame:
     return case
 
 
-def rework_anomaly(pd.DataFrame: case) -> pd.DataFrame:
+def rework_anomaly(case: pd.DataFrame) -> pd.DataFrame:
     """
     A sequence of 3 or less necessary events is executed twice
 
@@ -219,7 +219,7 @@ def rework_anomaly(pd.DataFrame: case) -> pd.DataFrame:
     return case
 
 
-def attribute_anomaly(pd.DataFrame: case) -> pd.DataFrame:
+def attribute_anomaly(case: pd.DataFrame) -> pd.DataFrame:
     """
     An incorrect attribute value is set in 3 or fewer events
 
@@ -262,7 +262,7 @@ def attribute_anomaly(pd.DataFrame: case) -> pd.DataFrame:
     return case
 
 
-def format_normal_case(pd.DataFrame: case) -> pd.DataFrame:
+def format_normal_case(case: pd.DataFrame) -> pd.DataFrame:
     """
     Returns formatted normal case
 
