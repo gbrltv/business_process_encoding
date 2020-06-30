@@ -27,7 +27,7 @@ def average_feature_vector(model, traces):
 
     return vectors
 
-def average_graph_feature_vector(model, traces):
+def average_edges_feature_vector(model, traces):
     """
     Computes average feature vector for each trace
 
