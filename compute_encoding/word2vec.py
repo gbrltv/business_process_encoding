@@ -6,7 +6,7 @@ from gensim.models import Word2Vec
 from utils import read_log
 from utils import sort_alphanumeric
 from utils import retrieve_traces
-from utils import train_model
+from utils import train_text_model
 from utils import average_feature_vector
 
 
@@ -21,7 +21,7 @@ for file in tqdm(sort_alphanumeric(os.listdir(path))):
 
     # generate model
     model = Word2Vec(size=100, window=3, min_count=1, workers=-1)
-    model = train_model(model, traces)
+    model = train_text_model(model, traces)
 
     # calculating the average feature vector for each sentence (trace)
     vectors = average_feature_vector(model, traces)
