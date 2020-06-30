@@ -1,8 +1,5 @@
-import os
-import time
 import random
 import pandas as pd
-import numpy as np
 from datetime import datetime, timedelta
 
 names = ['Adam', 'Adele', 'Amanda', 'Amy', 'Anna', 'Arthur', 'Ashton', 'Barney',
@@ -21,9 +18,17 @@ names = ['Adam', 'Adele', 'Amanda', 'Amy', 'Anna', 'Arthur', 'Ashton', 'Barney',
         'Wayne', 'Will', 'Willow', 'Zach', 'Zayn', 'Zoe']
 
 
-def early_anomaly(case):
+def early_anomaly(pd.DataFrame: case) -> pd.DataFrame:
     """
     A sequence of 2 or fewer events executed too early, which is then skipped later in the case
+
+    Parameters
+    -----------------------
+    case: pd.DataFrame,
+        Case to apply anomaly
+    Returns
+    -----------------------
+    Case with the applied early anomaly
     """
     case = case.reset_index(drop=True)
 
@@ -55,9 +60,18 @@ def early_anomaly(case):
 
     return case
 
-def late_anomaly(case):
+
+def late_anomaly(pd.DataFrame: case) -> pd.DataFrame:
     """
     A sequence of 2 or fewer events executed too late, which is then skipped later in the case
+
+    Parameters
+    -----------------------
+    case: pd.DataFrame,
+        Case to apply anomaly
+    Returns
+    -----------------------
+    Case with the applied late anomaly
     """
     case = case.reset_index(drop=True)
 
@@ -95,9 +109,19 @@ def late_anomaly(case):
     return case
 
 
-def insert_anomaly(case, random_count):
+def insert_anomaly(pd.DataFrame: case, int: random_count):
     """
     3 or less random activities inserted in the case
+
+    Parameters
+    -----------------------
+    case: pd.DataFrame,
+        Case to apply anomaly
+    random_count: int,
+        Integer used to complement the random activity name
+    Returns
+    -----------------------
+    Case with the applied insert anomaly
     """
     case = case.reset_index(drop=True)
     case_id = case['case'][0]
@@ -125,9 +149,18 @@ def insert_anomaly(case, random_count):
 
     return case, random_count
 
-def skip_anomaly(case):
+
+def skip_anomaly(pd.DataFrame: case) -> pd.DataFrame:
     """
     A sequence of 3 or less necessary events is skipped
+
+    Parameters
+    -----------------------
+    case: pd.DataFrame,
+        Case to apply anomaly
+    Returns
+    -----------------------
+    Case with the applied skip anomaly
     """
     case = case.reset_index(drop=True)
     timestamps = list(case['timestamp'])
@@ -148,9 +181,18 @@ def skip_anomaly(case):
 
     return case
 
-def rework_anomaly(case):
+
+def rework_anomaly(pd.DataFrame: case) -> pd.DataFrame:
     """
     A sequence of 3 or less necessary events is executed twice
+
+    Parameters
+    -----------------------
+    case: pd.DataFrame,
+        Case to apply anomaly
+    Returns
+    -----------------------
+    Case with the applied rework anomaly
     """
     case = case.reset_index(drop=True)
     timestamps = list(case['timestamp'])
@@ -176,9 +218,18 @@ def rework_anomaly(case):
 
     return case
 
-def attribute_anomaly(case):
+
+def attribute_anomaly(pd.DataFrame: case) -> pd.DataFrame:
     """
     An incorrect attribute value is set in 3 or fewer events
+
+    Parameters
+    -----------------------
+    case: pd.DataFrame,
+        Case to apply anomaly
+    Returns
+    -----------------------
+    Case with the applied attribute anomaly
     """
     case = case.reset_index(drop=True)
 
@@ -210,73 +261,20 @@ def attribute_anomaly(case):
 
     return case
 
-def format_normal_case(case):
+
+def format_normal_case(pd.DataFrame: case) -> pd.DataFrame:
     """
     Returns formatted normal case
+
+    Parameters
+    -----------------------
+    case: pd.DataFrame,
+        Case to apply anomaly
+    Returns
+    -----------------------
+    Case with labels and description
     """
     case = case.reset_index(drop=True)
     case['label'] = 'normal'
     case['description'] = 'normal case'
     return case
-
-def anomaly_selector(anomaly_type, case, random_count):
-    if anomaly_type == 'early':
-        return early_anomaly(case), random_count
-    elif anomaly_type == 'late':
-        return late_anomaly(case), random_count
-    elif anomaly_type == 'insert':
-        return insert_anomaly(case, random_count)
-    elif anomaly_type == 'skip':
-        return skip_anomaly(case), random_count
-    elif anomaly_type == 'rework':
-        return rework_anomaly(case), random_count
-    elif anomaly_type == 'attribute':
-        return attribute_anomaly(case), random_count
-    else:
-        return anomaly_selector(random.sample(['early', 'late', 'insert', 'skip', 'rework', 'attribute'], k=1)[0], case, random_count)
-
-
-save_path = './event_logs'
-anomalies = ['early', 'late', 'insert', 'skip', 'rework', 'attribute', 'all']
-os.makedirs(save_path, exist_ok=True)
-for path, _, files in os.walk('./event_logs_processed'):
-    if len(files) == 0:
-        continue
-
-    _, _, model_name, log_size, anomaly_probability = path.split('/')
-    if model_name != 'scenario5':
-        continue
-    if log_size == '10000':
-        continue
-
-    if len(files) == 1:
-        start_time = time.time()
-        file_name = f'{model_name}_{log_size}_normal_0.csv'
-
-        df = pd.read_csv(f'{path}/{files[0]}')
-        df['label'] = 'normal'
-        df['description'] = 'Normal case'
-
-        df.to_csv(f'{save_path}/{file_name}', index=False)
-        print(file_name, time.time()-start_time)
-
-    elif len(files) == 7:
-        anomaly_probability = float(anomaly_probability)
-
-        for file, anomaly in zip(files, anomalies):
-            start_time = time.time()
-            random_count = 1
-            df = pd.read_csv(f'{path}/{file}')
-            df_processed = pd.DataFrame(columns=['case', 'activity', 'timestamp', 'actor', 'resource', 'label', 'description'])
-
-            for group in df.groupby('case'):
-                if np.random.rand(1)[0] < anomaly_probability:
-                    anomalous_case, random_count = anomaly_selector(anomaly, group[1], random_count)
-                    df_processed = pd.concat([df_processed, anomalous_case], sort=False)
-                else:
-                    normal_case = format_normal_case(group[1])
-                    df_processed = pd.concat([df_processed, normal_case], sort=False)
-
-            file_name = f'{model_name}_{log_size}_{anomaly}_{anomaly_probability}.csv'
-            df_processed.to_csv(f'{save_path}/{file_name}', index=False)
-            print(file_name, time.time()-start_time)
