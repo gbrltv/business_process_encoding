@@ -27,15 +27,31 @@ Clone this repo to your local machine using
 git clone https://github.com/gbrltv/business_process_encoding.git
 ```
 
-### Experiments
+### Requirements
 
-Simulate the experiments described here
+TODO: add requirements, such as python version and libraries used
+
+## Experimental Setup
+
+### Preparation
+
+Before running the experiments, it is necessary to convert the original logs (```csv```) to the ```xes``` format. For that, run:
 
 ```shell
-python process_anomaly.py
+python3 utils/convert_csv_to_xes.py
 ```
 
-### Data Analysis
+This code convert files under the 'event_logs' folder and write them at 'event_logs_xes'. This process is necessary to run a few encodings in the next step.
+
+### Generate encodings
+
+To generate the encodings, simply run the files under the ```compute_encoding``` folder. Example:
+
+```shell
+python3 compute_encoding/alignment.py
+```
+
+## Data Analysis
 
 ## Contributors
 
