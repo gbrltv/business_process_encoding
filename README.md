@@ -33,7 +33,7 @@ TODO: add requirements, such as python version and libraries used
 
 ## Experimental Setup - recriating results
 
-### Preparation
+### Data preparation
 
 Before running the experiments, it is necessary to convert the original logs (`csv`) to the `xes` format. For that, run:
 
@@ -55,9 +55,15 @@ python3 compute_encoding/alignment.py
 The results are saved under the `encoding_results` folder. Run all encodings needed for the analysis.
 
 
-### Calculate encoding quality
+### Measuring encoding quality
 
-TODO: add R code
+To extract encoding quality metrics, run:
+
+```shell
+Rscript feature_metrics.R
+```
+
+The script reads the encodings from `encoding_results` and perform metrics extraction based on [1](https://aps.arxiv.org/abs/1808.10406v1) and [2](http://www.jmlr.org/papers/volume21/19-348/19-348.pdf). The results are saved in the `dataset_ALL.csv` file, also included in the repository.
 
 
 ### Classification experiments
