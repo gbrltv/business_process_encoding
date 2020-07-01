@@ -3,10 +3,10 @@ import pandas as pd
 import numpy as np
 
 
-scenarios = ['1', '2', '3', '4', '5']
+scenarios = list(range(1, 6))
 for complexity in scenarios:
     n_cases, n_activities, n_events, n_attr_values = [], [], [], []
-    for log in glob.glob(f'event_logs/scenario{complexity}*_1000_*'):
+    for log in glob.glob(f'./event_logs/scenario{complexity}*'):
         df = pd.read_csv(log)
 
         n_events.append(len(df))
