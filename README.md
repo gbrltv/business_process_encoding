@@ -31,11 +31,11 @@ git clone https://github.com/gbrltv/business_process_encoding.git
 
 TODO: add requirements, such as python version and libraries used
 
-## Experimental Setup
+## Experimental Setup - Recriating results
 
 ### Preparation
 
-Before running the experiments, it is necessary to convert the original logs (```csv```) to the ```xes``` format. For that, run:
+Before running the experiments, it is necessary to convert the original logs (`csv`) to the `xes` format. For that, run:
 
 ```shell
 python3 utils/convert_csv_to_xes.py
@@ -46,13 +46,33 @@ This code convert files under the `event_logs` folder and write them at `event_l
 
 ### Generate encodings
 
-To generate the encodings, simply run the files under the ```compute_encoding``` folder. Example:
+To generate the encodings, simply run the files under the `compute_encoding` folder. Example:
 
 ```shell
 python3 compute_encoding/alignment.py
 ```
 
+The results are saved under the `encoding_results` folder. Run all encodings needed for the analysis.
+
+
+### Calculate encoding quality
+
+TODO: add R code
+
+
+### Classification experiments
+
+To simulate the classification experiments, simply run:
+
+```shell
+python3 classification.py
+```
+
+This experiment uses a holdout of 80/20 for train/test. It reads the encodings from `encoding_results` and uses the Random Forest classifier due to its robustness. The results are saved on the `results.csv` file, which is uploaded in this repository.
+
 ## Data Analysis
+
+TODO: link notebooks with plot generations and data analysis
 
 ## Contributors
 
