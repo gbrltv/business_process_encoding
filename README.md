@@ -1,6 +1,6 @@
 # Business Process Encoding
 
-> Evaluation of encodings in the context of business processes. In total, 10 different encodings are evaluated. The encodings are divided in three categories: process mining based, text based and graph based.
+> Evaluation of encodings in the context of business processes. In total, ten different encodings are evaluated. The encodings are divided into three categories: process mining based, text based and graph based.
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/gbrltv/business_process_encoding/graphs/commit-activity)
