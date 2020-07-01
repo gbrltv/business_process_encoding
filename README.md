@@ -14,6 +14,10 @@
 
 - [Installation](#installation)
 - [Experimental Setup](#experimental-setup)
+  - [Data preparation](#data-preparation)
+  - [Generate encodings](#generate-encodings)
+  - [Measuring encoding quality](#measuring-encoding-quality)
+  - [Classification experiments](#classification-experiments)
 - [Data Analysis](#data-analysis)
 - [Contributors](#contributors)
 
@@ -31,7 +35,7 @@ git clone https://github.com/gbrltv/business_process_encoding.git
 
 TODO: add requirements, such as python version and libraries used
 
-## Experimental Setup - recriating results
+## Experimental Setup
 
 ### Data preparation
 
