@@ -31,7 +31,7 @@ git clone https://github.com/gbrltv/business_process_encoding.git
 
 TODO: add requirements, such as python version and libraries used
 
-## Experimental Setup - Recriating results
+## Experimental Setup - recriating results
 
 ### Preparation
 
