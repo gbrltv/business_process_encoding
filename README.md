@@ -1,6 +1,6 @@
 # Business Process Encoding
 
-> Detection of anomalous business process traces in a scarcity of labels scenario. For that, it uses the word2vec encoding in combination with one-class classification algorithms
+> Evaluation of encodings in the context of business processes. In total, ten different encodings are evaluated. The encodings are divided into three categories: process mining based, text based and graph based.
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/gbrltv/business_process_encoding/graphs/commit-activity)
@@ -27,15 +27,52 @@ Clone this repo to your local machine using
 git clone https://github.com/gbrltv/business_process_encoding.git
 ```
 
-### Experiments
+### Requirements
 
-Simulate the experiments described here
+TODO: add requirements, such as python version and libraries used
+
+## Experimental Setup - recriating results
+
+### Preparation
+
+Before running the experiments, it is necessary to convert the original logs (`csv`) to the `xes` format. For that, run:
 
 ```shell
-python process_anomaly.py
+python3 utils/convert_csv_to_xes.py
 ```
 
-### Data Analysis
+This code convert files under the `event_logs` folder and write them at `event_logs_xes`. This process is necessary to run a few encodings in the next step.
+
+
+### Generate encodings
+
+To generate the encodings, simply run the files under the `compute_encoding` folder. Example:
+
+```shell
+python3 compute_encoding/alignment.py
+```
+
+The results are saved under the `encoding_results` folder. Run all encodings needed for the analysis.
+
+
+### Calculate encoding quality
+
+TODO: add R code
+
+
+### Classification experiments
+
+To simulate the classification experiments, simply run:
+
+```shell
+python3 classification.py
+```
+
+This experiment uses a holdout of 80/20 for train/test. It reads the encodings from `encoding_results` and uses the Random Forest classifier due to its robustness. The results are saved on the `results.csv` file, which is uploaded in this repository.
+
+## Data Analysis
+
+TODO: link notebooks with plot generations and data analysis
 
 ## Contributors
 
