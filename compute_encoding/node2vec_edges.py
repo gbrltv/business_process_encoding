@@ -6,7 +6,7 @@ from utils import read_log
 from utils import sort_alphanumeric
 from utils import retrieve_traces
 from utils import create_graph
-from utils import train_graph_model_edges
+from utils import train_graph_model
 from utils import average_edges_feature_vector
 
 
@@ -24,7 +24,7 @@ for file in tqdm(sort_alphanumeric(os.listdir(path))):
     graph = create_graph(f'./event_logs_xes/{file_name}.xes')
 
     # generate model
-    model = train_graph_model_edges(graph)
+    model = train_graph_model(graph, is_edges=True)
 
     # calculating the average feature vector for each sentence (trace)
     vectors = average_edges_feature_vector(model, traces)
