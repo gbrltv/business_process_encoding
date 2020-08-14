@@ -18,7 +18,6 @@
   - [Generate encodings](#generate-encodings)
   - [Measuring encoding quality](#measuring-encoding-quality)
   - [Classification experiments](#classification-experiments)
-- [Data Analysis](#data-analysis)
 - [Contributors](#contributors)
 
 ## Installation
@@ -33,7 +32,7 @@ git clone https://github.com/gbrltv/business_process_encoding.git
 
 ### Requirements
 
-TODO: add requirements, such as python version and libraries used
+TODO: add requirements
 
 ## Experimental Setup
 
@@ -79,10 +78,6 @@ python3 classification.py
 ```
 
 This experiment uses a holdout of 80/20 for train/test. It reads the encodings from `encoding_results` and uses the Random Forest classifier due to its robustness. The results are saved on the `results.csv` file, which is uploaded in this repository.
-
-## Data Analysis
-
-TODO: link notebooks with plot generations and data analysis
 
 ## Contributors
 
