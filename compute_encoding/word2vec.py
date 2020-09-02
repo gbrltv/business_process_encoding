@@ -3,6 +3,7 @@ import time
 import pandas as pd
 from tqdm import tqdm
 from gensim.models import Word2Vec
+from skmultiflow.utils import calculate_object_size
 from utils import read_log
 from utils import sort_alphanumeric
 from utils import retrieve_traces
@@ -27,10 +28,12 @@ for file in tqdm(sort_alphanumeric(os.listdir(path))):
     vectors = average_feature_vector(model, traces)
 
     end_time = time.time() - start_time
+    memory = calculate_object_size(vectors)
 
     # saving
     out_df = pd.DataFrame(vectors, columns=[f'feature_{i}' for i in range(100)])
     out_df['case'] = ids
     out_df['time'] = end_time
+    out_df['memory'] = memory
     out_df['label'] = y
     out_df.to_csv(f'{save_path}/{file}', index=False)

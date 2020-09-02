@@ -1,9 +1,11 @@
 import os
 import time
 import pandas as pd
+from tqdm import tqdm
 from pm4py.objects.log.importer.xes import importer as xes_importer
 from pm4py.algo.discovery.inductive import algorithm as inductive_miner
 from pm4py.algo.conformance.tokenreplay import algorithm as token_replay
+from skmultiflow.utils import calculate_object_size
 from utils import read_log
 from utils import sort_alphanumeric
 from utils import retrieve_traces
@@ -25,7 +27,7 @@ def compute_alignments(alignments):
 path = './event_logs'
 save_path = './encoding_results/tokenreplay'
 os.makedirs(save_path, exist_ok=True)
-for file in sort_alphanumeric(os.listdir(path)):
+for file in tqdm(sort_alphanumeric(os.listdir(path))):
     # read event log and import case id and labels
     ids, traces, y = retrieve_traces(read_log(path, file))
 
@@ -42,9 +44,9 @@ for file in sort_alphanumeric(os.listdir(path)):
     replayed_traces = token_replay.apply(log, net, initial_marking, final_marking)
 
     end_time = time.time() - start_time
+    memory = calculate_object_size(replayed_traces)
 
     final_token_replay = compute_alignments(replayed_traces)
-
 
     # saving
     out_df = pd.DataFrame()
@@ -56,5 +58,6 @@ for file in sort_alphanumeric(os.listdir(path)):
     out_df['produced_tokens'] = final_token_replay[5]
     out_df['case'] = ids
     out_df['time'] = end_time
+    out_df['memory'] = memory
     out_df['label'] = y
     out_df.to_csv(f'{save_path}/{file}', index=False)
