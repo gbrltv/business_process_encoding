@@ -12,7 +12,7 @@ from utils import average_feature_vector
 
 
 path = './event_logs'
-save_path = './encoding_results/word2vec'
+save_path = './encoding_results/word2vec_skipgram'
 os.makedirs(save_path, exist_ok=True)
 for file in tqdm(sort_alphanumeric(os.listdir(path))):
     # read event log and import case id and labels
@@ -21,7 +21,7 @@ for file in tqdm(sort_alphanumeric(os.listdir(path))):
     start_time = time.time()
 
     # generate model
-    model = Word2Vec(size=100, window=3, min_count=1, workers=-1)
+    model = Word2Vec(size=100, window=3, min_count=1, sg=1, workers=-1)
     model = train_text_model(model, traces)
 
     # calculating the average feature vector for each sentence (trace)
