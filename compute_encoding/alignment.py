@@ -14,7 +14,7 @@ from utils import retrieve_traces
 
 def compute_alignments(alignments):
     cost, visited_states, queued_states, traversed_arcs, fitness = [], [], [], [], []
-    for alignment in trace_alignments:
+    for alignment in alignments:
         if alignment is None:
             cost.append(0)
             visited_states.append(0)

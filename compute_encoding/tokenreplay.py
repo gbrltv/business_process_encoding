@@ -11,7 +11,7 @@ from utils import sort_alphanumeric
 from utils import retrieve_traces
 
 
-def compute_alignments(alignments):
+def compute_alignments(replayed_traces):
     trace_is_fit, trace_fitness, missing_tokens, consumed_tokens, remaining_tokens, produced_tokens = [], [], [], [], [], []
     for replayed in replayed_traces:
         trace_is_fit.append(replayed['trace_is_fit'])

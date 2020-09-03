@@ -4,7 +4,7 @@ from .retrieve_traces import retrieve_traces
 from .extract_corpus import extract_corpus
 from .create_graph import create_graph
 from .train_model import train_text_model, train_graph_model
-from .average_feature_vector import average_feature_vector, average_edges_feature_vector
+from .average_feature_vector import average_feature_vector, average_edges_feature_vector, average_feature_vector_doc2vec
 
 
 __all__ = [
@@ -16,5 +16,6 @@ __all__ = [
     "train_text_model",
     "train_graph_model",
     "average_feature_vector",
-    "average_edges_feature_vector"
+    "average_edges_feature_vector",
+    "average_feature_vector_doc2vec"
 ]

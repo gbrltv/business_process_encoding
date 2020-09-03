@@ -27,6 +27,27 @@ def average_feature_vector(model, traces):
 
     return vectors
 
+def average_feature_vector_doc2vec(model, traces):
+    """
+    Retrieves the document feature vector for doc2vec
+
+    Parameters
+    -----------------------
+    model,
+        Text-based model containing the computed encodings
+    traces: List,
+        List of traces treated as sentences by the model
+    Returns
+    -----------------------
+    vectors: List
+        list of vector encodings for each trace
+    """
+    vectors = []
+    for trace in traces:
+        vectors.append(model.infer_vector(trace))
+
+    return vectors
+
 def average_edges_feature_vector(model, traces):
     """
     Computes average feature vector for each trace
