@@ -4,7 +4,7 @@ import pandas as pd
 from tqdm import tqdm
 import networkx as nx
 from skmultiflow.utils import calculate_object_size
-from karateclub.node_embedding.neighbourhood import Node2Vec
+from karateclub.node_embedding.structural import GraphWave
 from utils import read_log
 from utils import sort_alphanumeric
 from utils import retrieve_traces
@@ -27,7 +27,7 @@ def save_results(vector, dimension, ids, time, memory, y, path):
 
 dimensions = [2, 4, 8, 16, 32, 64, 128, 256]
 path = './event_logs'
-save_path = './encoding_results/node2vec'
+save_path = './encoding_results/graphwave'
 for type in ['average', 'max']:
     for dimension in dimensions:
         os.makedirs(f'{save_path}/node/{type}/{dimension}', exist_ok=True)
@@ -47,7 +47,7 @@ for file in tqdm(sort_alphanumeric(os.listdir(path))):
     for dimension in dimensions:
         start_time = time.time()
         # generate model
-        model = Node2Vec(dimensions=dimension)
+        model = GraphWave(sample_number=int(dimension/2))
         model.fit(graph)
         training_time = time.time() - start_time
 

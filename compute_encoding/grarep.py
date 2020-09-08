@@ -4,7 +4,7 @@ import pandas as pd
 from tqdm import tqdm
 import networkx as nx
 from skmultiflow.utils import calculate_object_size
-from karateclub.node_embedding.neighbourhood import Node2Vec
+from karateclub.node_embedding.neighbourhood import GraRep
 from utils import read_log
 from utils import sort_alphanumeric
 from utils import retrieve_traces
@@ -25,9 +25,9 @@ def save_results(vector, dimension, ids, time, memory, y, path):
     out_df.to_csv(path, index=False)
 
 
-dimensions = [2, 4, 8, 16, 32, 64, 128, 256]
+dimensions = [2, 4, 8, 16]
 path = './event_logs'
-save_path = './encoding_results/node2vec'
+save_path = './encoding_results/grarep'
 for type in ['average', 'max']:
     for dimension in dimensions:
         os.makedirs(f'{save_path}/node/{type}/{dimension}', exist_ok=True)
@@ -47,13 +47,13 @@ for file in tqdm(sort_alphanumeric(os.listdir(path))):
     for dimension in dimensions:
         start_time = time.time()
         # generate model
-        model = Node2Vec(dimensions=dimension)
+        model = GraRep(dimensions=dimension)
         model.fit(graph)
         training_time = time.time() - start_time
-
+        embedding = model.get_embedding()[:, 0:dimension]
         # calculating the average and max feature vector for each trace
         start_time = time.time()
-        node_average, node_max = trace_feature_vector_from_nodes(model.get_embedding(), traces, dimension)
+        node_average, node_max = trace_feature_vector_from_nodes(embedding, traces, dimension)
         node_time = training_time + (time.time() - start_time)
 
         # saving
@@ -63,7 +63,7 @@ for file in tqdm(sort_alphanumeric(os.listdir(path))):
         save_results(node_max, dimension, ids, node_time, mem_size, y, f'{save_path}/node/max/{dimension}/{file}')
 
         start_time = time.time()
-        edge_average_average, edge_average_max, edge_hadamard_average, edge_hadamard_max, edge_weightedl1_average, edge_weightedl1_max, edge_weightedl2_average, edge_weightedl2_max = trace_feature_vector_from_edges(model.get_embedding(), traces, dimension)
+        edge_average_average, edge_average_max, edge_hadamard_average, edge_hadamard_max, edge_weightedl1_average, edge_weightedl1_max, edge_weightedl2_average, edge_weightedl2_max = trace_feature_vector_from_edges(embedding, traces, dimension)
         edge_time = training_time + (time.time() - start_time)
 
         mem_size = calculate_object_size(edge_average_average) + calculate_object_size(model)

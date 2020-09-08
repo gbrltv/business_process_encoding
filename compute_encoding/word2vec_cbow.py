@@ -11,30 +11,38 @@ from utils import train_text_model
 from utils import average_feature_vector
 
 
+def save_results(vector, dimension, ids, time, memory, y, path):
+    out_df = pd.DataFrame(vector, columns=[f'feature_{i}' for i in range(dimension)])
+    out_df['case'] = ids
+    out_df['time'] = time
+    out_df['memory'] = memory
+    out_df['label'] = y
+    out_df.to_csv(path, index=False)
+
+
+dimensions = [2, 4, 8, 16, 32, 64, 128, 256]
 path = './event_logs'
 save_path = './encoding_results/word2vec_cbow'
-os.makedirs(save_path, exist_ok=True)
+for type in ['average', 'max']:
+    for dimension in dimensions:
+        os.makedirs(f'{save_path}/{type}/{dimension}', exist_ok=True)
+
 for file in tqdm(sort_alphanumeric(os.listdir(path))):
     # read event log and import case id and labels
     ids, traces, y = retrieve_traces(read_log(path, file))
-    print(traces)
-    exit()
-    start_time = time.time()
 
-    # generate model
-    model = Word2Vec(size=100, window=3, min_count=1, sg=0, workers=-1)
-    model = train_text_model(model, traces)
+    for dimension in dimensions:
+        start_time = time.time()
+        # generate model
+        model = Word2Vec(size=dimension, window=3, min_count=1, sg=0, workers=-1)
+        model = train_text_model(model, traces)
 
-    # calculating the average feature vector for each sentence (trace)
-    vectors = average_feature_vector(model, traces)
+        # calculating the average feature vector for each sentence (trace)
+        vectors_average, vectors_max = average_feature_vector(model, traces)
 
-    end_time = time.time() - start_time
-    memory = calculate_object_size(vectors)
+        end_time = time.time() - start_time
 
-    # saving
-    out_df = pd.DataFrame(vectors, columns=[f'feature_{i}' for i in range(100)])
-    out_df['case'] = ids
-    out_df['time'] = end_time
-    out_df['memory'] = memory
-    out_df['label'] = y
-    out_df.to_csv(f'{save_path}/{file}', index=False)
+        mem_size = calculate_object_size(vectors_average) + calculate_object_size(model)
+        save_results(vectors_average, dimension, ids, end_time, mem_size, y, f'{save_path}/average/{dimension}/{file}')
+        mem_size = calculate_object_size(vectors_max) + calculate_object_size(model)
+        save_results(vectors_max, dimension, ids, end_time, mem_size, y, f'{save_path}/max/{dimension}/{file}')

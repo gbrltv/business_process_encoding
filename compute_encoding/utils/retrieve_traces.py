@@ -26,3 +26,25 @@ def retrieve_traces(df: pd.DataFrame):
         ids.append(list(group[1].case)[0])
 
     return ids, traces, y
+
+def convert_traces_mapping(traces_raw, mapping):
+    """
+    Convert traces activity name using a given mapping
+
+    Parameters
+    -----------------------
+    traces: List,
+        List of traces
+    mapping: dict:
+        Dictionary containing activities mapping
+    Returns
+    -----------------------
+        List of converted traces
+    """
+    traces = []
+    for trace in traces_raw:
+        current_trace = []
+        for act in trace:
+            current_trace.append(mapping[act])
+        traces.append(current_trace)
+    return traces

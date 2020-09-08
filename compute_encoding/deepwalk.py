@@ -2,9 +2,10 @@ import os
 import time
 import pandas as pd
 from tqdm import tqdm
+from multiprocessing import cpu_count
 import networkx as nx
 from skmultiflow.utils import calculate_object_size
-from karateclub.node_embedding.neighbourhood import Node2Vec
+from karateclub.node_embedding.neighbourhood import DeepWalk
 from utils import read_log
 from utils import sort_alphanumeric
 from utils import retrieve_traces
@@ -15,6 +16,7 @@ from utils import trace_feature_vector_from_edges
 import warnings
 warnings.filterwarnings('ignore')
 
+n_workers = cpu_count()
 
 def save_results(vector, dimension, ids, time, memory, y, path):
     out_df = pd.DataFrame(vector, columns=[f'feature_{i}' for i in range(dimension)])
@@ -27,12 +29,13 @@ def save_results(vector, dimension, ids, time, memory, y, path):
 
 dimensions = [2, 4, 8, 16, 32, 64, 128, 256]
 path = './event_logs'
-save_path = './encoding_results/node2vec'
+save_path = './encoding_results/deepwalk'
 for type in ['average', 'max']:
     for dimension in dimensions:
         os.makedirs(f'{save_path}/node/{type}/{dimension}', exist_ok=True)
         for edge_type in ['average', 'hadamard', 'weightedl1', 'weightedl2']:
             os.makedirs(f'{save_path}/edge/{edge_type}/{type}/{dimension}', exist_ok=True)
+
 for file in tqdm(sort_alphanumeric(os.listdir(path))):
     # create graph
     file_name = file.split('.csv')[0]
@@ -47,7 +50,7 @@ for file in tqdm(sort_alphanumeric(os.listdir(path))):
     for dimension in dimensions:
         start_time = time.time()
         # generate model
-        model = Node2Vec(dimensions=dimension)
+        model = DeepWalk(dimensions=dimension, workers=n_workers)
         model.fit(graph)
         training_time = time.time() - start_time
 
