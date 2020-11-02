@@ -7,7 +7,6 @@ from skmultiflow.utils import calculate_object_size
 from utils import read_log
 from utils import sort_alphanumeric
 from utils import retrieve_traces
-from utils import train_text_model
 from utils import average_feature_vector_doc2vec
 
 
