@@ -66,11 +66,20 @@ def average_feature_vector_glove(model, traces):
     vectors: List
         list of vector encodings for each trace
     """
-    vectors = []
+    vectors_average, vectors_max = [], []
     for trace in traces:
-        vectors.append(model.infer_vector(trace))
+        trace_vector = []
+        for token in trace:
+            try:
+                trace_vector.append(model.word_vectors[model.dictionary[token]])
+            except KeyError:
+                pass
+        # print(trace)
+        # print(trace_vector)
+        vectors_average.append(np.array(trace_vector).mean(axis=0))
+        vectors_max.append(np.array(trace_vector).max(axis=0))
 
-    return vectors
+    return vectors_average, vectors_max
 
 
 def trace_feature_vector_from_nodes(embeddings, traces, dimension):
