@@ -30,10 +30,6 @@ Clone this repo to your local machine using
 git clone https://github.com/gbrltv/business_process_encoding.git
 ```
 
-### Requirements
-
-TODO: add requirements
-
 ## Experimental Setup
 
 ### Data preparation
@@ -78,6 +74,12 @@ python3 classification.py
 ```
 
 This experiment uses a holdout of 80/20 for train/test. It reads the encodings from `encoding_results` and uses the Random Forest classifier due to its robustness. The results are saved on the `results.csv` file, which is uploaded in this repository.
+
+
+## References
+
+[Barbon Jr., S., Ceravolo, P., Damiani, E., Tavares, G.M.: Evaluating trace encoding methods in process mining, 2021](https://link.springer.com/chapter/10.1007/978-3-030-70650-0_11)
+
 
 ## Contributors
 
