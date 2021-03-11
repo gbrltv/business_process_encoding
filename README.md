@@ -40,7 +40,7 @@ Before running the experiments, it is necessary to convert the original logs (`c
 python3 utils/convert_csv_to_xes.py
 ```
 
-This code convert files under the `event_logs` folder and write them at `event_logs_xes`. This process is necessary to run a few encodings in the next step.
+This code converts files under the `event_logs` folder and write them at `event_logs_xes`. This process is necessary to run a few encodings in the next step.
 
 
 ### Generate encodings
