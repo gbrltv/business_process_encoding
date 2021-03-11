@@ -8,7 +8,6 @@
 [![GitHub forks](https://img.shields.io/github/forks/gbrltv/business_process_encoding)](https://github.com/forks/gbrltv/business_process_encoding)
 [![GitHub stars](https://img.shields.io/github/stars/gbrltv/business_process_encoding)](https://img.shields.io/github/stars/gbrltv/business_process_encoding)
 [![GitHub license](https://img.shields.io/github/license/gbrltv/business_process_encoding)](https://img.shields.io/github/license/gbrltv/business_process_encoding)
-[![Twitter](https://img.shields.io/twitter/url?style=social)](https://twitter.com/intent/tweet?text=Using+Business%20Process+Encoding:&url=https://github.com/gbrltv/business_process_encoding)
 
 ## Table of Contents
 
@@ -18,6 +17,7 @@
   - [Generate encodings](#generate-encodings)
   - [Measuring encoding quality](#measuring-encoding-quality)
   - [Classification experiments](#classification-experiments)
+- [References](#references)
 - [Contributors](#contributors)
 
 ## Installation
