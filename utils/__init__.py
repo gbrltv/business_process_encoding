@@ -1,20 +1,24 @@
 from .sort_alphanumeric import sort_alphanumeric
-from .inject_anomalies import early_anomaly
-from .inject_anomalies import late_anomaly
-from .inject_anomalies import insert_anomaly
-from .inject_anomalies import skip_anomaly
-from .inject_anomalies import rework_anomaly
-from .inject_anomalies import attribute_anomaly
-from .inject_anomalies import format_normal_case
+from .read_log import read_log
+from .retrieve_traces import retrieve_traces, convert_traces_mapping
+from .extract_corpus import extract_corpus
+from .create_graph import create_graph
+from .train_model import train_text_model
+from .average_feature_vector import average_feature_vector, \
+    average_feature_vector_doc2vec, trace_feature_vector_from_nodes, \
+    trace_feature_vector_from_edges
 
 
 __all__ = [
     "sort_alphanumeric",
-    "early_anomaly",
-    "late_anomaly",
-    "insert_anomaly",
-    "skip_anomaly",
-    "rework_anomaly",
-    "attribute_anomaly",
-    "format_normal_case"
+    "read_log",
+    "retrieve_traces",
+    "convert_traces_mapping",
+    "extract_corpus",
+    "create_graph",
+    "train_text_model",
+    "average_feature_vector",
+    "average_feature_vector_doc2vec",
+    "trace_feature_vector_from_nodes",
+    "trace_feature_vector_from_edges"
 ]
