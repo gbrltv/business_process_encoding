@@ -18,35 +18,9 @@ def read_args():
 def run(config):
     log = read_log(config["dataset"])
 
-    # encoder = enc_selector(config["encoding"])
-    encodings = [
-        # "count2vec",
-        # "onehot",
-        # "alignment",
-        # "logskeleton",
-        # "tokenreplay",
-        # "doc2vec",
-        # "hash2vec",
-        # "tfidf",
-        # "word2vec",
-        # "boostne",
-        # "deepwalk",
-        # "diff2vec",
-        # "glee",
-        # "grarep",
-        # "hope",
-        # "laplacianeigenmaps",
-        "netmf",
-        "nmfadmm",
-        "node2vec",
-        "nodesketch",
-        "role2vec",
-        "walklets",
-    ]
-    for encoding in encodings:
-        encoder = enc_selector(encoding)
-        res = encoder(config, log)
-        res.to_csv(f"results/{encoding}.csv", index=False)
+    encoder = enc_selector(config["encoding"])
+    encoding = encoder(config, log)
+    print(encoding)
 
 
 if __name__ == "__main__":
