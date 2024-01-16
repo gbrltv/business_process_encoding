@@ -12,17 +12,11 @@
 ## Table of Contents
 
 - [Installation](#installation)
-- [Experimental Setup](#experimental-setup)
-  - [Data preparation](#data-preparation)
-  - [Generate encodings](#generate-encodings)
-  - [Measuring encoding quality](#measuring-encoding-quality)
-  - [Classification experiments](#classification-experiments)
+- [Extract encodings](#extract-encodings)
 - [References](#references)
 - [Contributors](#contributors)
 
 ## Installation
-
-### Clone
 
 Clone this repo to your local machine using
 
@@ -30,59 +24,48 @@ Clone this repo to your local machine using
 git clone https://github.com/gbrltv/business_process_encoding.git
 ```
 
-## Experimental Setup
-
-### Data preparation
-
-Before running the experiments, it is necessary to convert the original logs (`csv`) to the `xes` format. For that, run:
+Create an environment and activate it
 
 ```shell
-python3 utils/convert_csv_to_xes.py
+conda create --name bpe python=3.10
+conda activate bpe
 ```
 
-This code converts files under the `event_logs` folder and write them at `event_logs_xes`. This process is necessary to run a few encodings in the next step.
-
-
-### Generate encodings
-
-To generate the encodings, simply run the files under the `compute_encoding` folder. Example:
+Install dependencies
 
 ```shell
-python3 compute_encoding/alignment.py
+python -m pip install -r requirements.txt
 ```
 
-The results are saved under the `encoding_results` folder. Run all encodings needed for the analysis.
+### Extract encodings
 
-
-### Measuring encoding quality
-
-To extract encoding quality metrics, run:
+To generate the encodings, simply call the main function and provide the arguments. Example:
 
 ```shell
-Rscript feature_metrics.R
+python main.py --dataset=event_logs/scenario1_1000_attribute_0.05.xes --encoding=onehot
 ```
 
-The script reads the encodings from `encoding_results` and perform metrics extraction based on [1](https://aps.arxiv.org/abs/1808.10406v1) and [2](http://www.jmlr.org/papers/volume21/19-348/19-348.pdf). The results are saved in the `dataset_ALL.csv` file, also included in the repository.
+The computed encodings are returned and then can be used for further tasks.
 
+### Parameters
 
-### Classification experiments
-
-To simulate the classification experiments, simply run:
-
-```shell
-python3 classification.py
-```
-
-This experiment uses a holdout of 80/20 for train/test. It reads the encodings from `encoding_results` and uses the Random Forest classifier due to its robustness. The results are saved on the `results.csv` file, which is uploaded in this repository.
-
+| Parameter | Description | Options |
+| ------------- | ------------- | ------------- |
+| dataset  | event log path  | - |
+| encoding | encoding method used to extract embeddings | onehot, count2vec, alignment, logskeleton, tokenreplay, doc2vec, hash2vec, tfidf, word2vec, boostne, deepwalk, diff2vec, glee, grarep, hope, laplacianeigenmaps, netmf, nmfadmm, node2vec, nodesketch, role2vec, walklets |
+| vector_size | number of desired dimensions for the encoding (note that some encoding methods do not allow to configure this option) | - |
+| aggregation | how to aggregate activities' encodings to represent a complete trace (exclusive for some methods of the text and graph families of encodings) | average, max |
+| embed_from | extract encodings from nodes or edges (exclusive for the graph-based encodings) | nodes, edges |
+| edge_operator | how to aggregate edge embeddings (exclusive for the graph-based encodings) | average, hadamard, weightedl1, weightedl2 |
 
 ## References
 
 [Barbon Jr., S., Ceravolo, P., Damiani, E., Tavares, G.M.: Evaluating trace encoding methods in process mining, 2021](https://link.springer.com/chapter/10.1007/978-3-030-70650-0_11)
-
+[Tavares, G.M., Oyamada, R.S., Barbon Jr., S., Ceravolo, P.: Trace encoding in process mining: A survey and benchmarking, 2023](https://www.sciencedirect.com/science/article/pii/S0952197623012125)
 
 ## Contributors
 
-- [Gabriel Marques Tavares](https://www.researchgate.net/profile/Gabriel_Tavares6), PhD candidate at Università degli Studi di Milano
+- [Gabriel Marques Tavares](https://www.dbs.ifi.lmu.de/cms/personen/mitarbeiter/tavares/index.html), Postdoc at LMU München
+- [Rafael Seidi Oyamada](https://sesar.di.unimi.it/staff/rafael-oyamada/) PhD candidate at Università degli Studi di Milano
 - [Paolo Ceravolo](https://www.unimi.it/en/ugov/person/paolo-ceravolo), Associate Professor at Università degli Studi di Milano
-- [Sylvio Barbon Junior](http://www.barbon.com.br/), Associate Professor at State University of Londrina
+- [Sylvio Barbon Junior](http://www.barbon.com.br/), Associate Professor at Univeristà degli Studi di Trieste
