@@ -41,7 +41,7 @@ def run_alignment(config, log):
         activity_key="concept:name",
         case_id_key="case:concept:name",
         timestamp_key="time:timestamp",
-        multi_processing=True,
+        # multi_processing=True,
     )
 
     end_time = time.time() - start_time
